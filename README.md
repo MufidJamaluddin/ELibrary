@@ -1,2 +1,3 @@
-# ELibrary
-Coba Test Driven Development (TDD) dan CI/CD dengan Azure DevOps
+# Smart Library
+
+Aplikasi SmartLibrary dibuat untuk membantu perpustakaan dalam perihal peminjaman buku.

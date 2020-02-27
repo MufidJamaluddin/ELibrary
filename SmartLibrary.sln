@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartLibrary.Web", "src\SmartLibrary.Web.csproj", "{296411FA-4DC6-4597-BDC9-3CD595E7F711}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartLibrary.Web.IntegrationTest", "tests\SmartLibrary.WebAPI.IntegrationTest\SmartLibrary.Web.IntegrationTest.csproj", "{3A2D5566-2FB7-4BE3-8091-8E2BD3FF5FEB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{296411FA-4DC6-4597-BDC9-3CD595E7F711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{296411FA-4DC6-4597-BDC9-3CD595E7F711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{296411FA-4DC6-4597-BDC9-3CD595E7F711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{296411FA-4DC6-4597-BDC9-3CD595E7F711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A2D5566-2FB7-4BE3-8091-8E2BD3FF5FEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A2D5566-2FB7-4BE3-8091-8E2BD3FF5FEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A2D5566-2FB7-4BE3-8091-8E2BD3FF5FEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A2D5566-2FB7-4BE3-8091-8E2BD3FF5FEB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BFB0A9E6-B5AA-43C6-97B2-5422596E30E5}
+	EndGlobalSection
+EndGlobal
