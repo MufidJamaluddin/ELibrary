@@ -19,9 +19,9 @@ namespace SmartLibrary.WebAPI.IntegrationTest.Controllers.Catalogue
         }
 
         [Fact]
-        public async Task TestResultCountAsync()
+        public async void TestResultCount()
         {
-            var httpResponse = await _client.GetAsync("/api/catalogue/bookshelf");
+            var httpResponse = await this._client.GetAsync("/api/catalogue/bookshelf");
 
             httpResponse.EnsureSuccessStatusCode();
 
@@ -30,6 +30,14 @@ namespace SmartLibrary.WebAPI.IntegrationTest.Controllers.Catalogue
             var books = JsonConvert.DeserializeObject<IEnumerable<Book>>(stringResponse);
 
             Assert.Equal(10, books.ToList().Count);
+        }
+
+        [Fact]
+        public async void TestGetOneBook()
+        {
+            var httpResponse = await this._client.GetAsync("/api/catalogue/bookshelf/1");
+
+            httpResponse.EnsureSuccessStatusCode();
         }
     }
 }
