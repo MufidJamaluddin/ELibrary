@@ -5,11 +5,6 @@ namespace SmartLibrary.WebAPI.Models.Schema
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext()
-        {
-            
-        }
-
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
             
@@ -17,7 +12,7 @@ namespace SmartLibrary.WebAPI.Models.Schema
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=smartlibrary.db");
+           
         }
 
         public DbSet<Book> Books { get; set; }

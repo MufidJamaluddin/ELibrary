@@ -14,7 +14,7 @@ namespace SmartLibrary.Web.IntegrationTest
         {
             builder.ConfigureServices(services =>
             {
-                services.AddDbContext<AppDbContext>(options =>
+                services.AddDbContextPool<AppDbContext>(options =>
                 {
                     options.UseInMemoryDatabase("InMemoryAppDb");
                     options.UseInternalServiceProvider(
@@ -31,6 +31,9 @@ namespace SmartLibrary.Web.IntegrationTest
                 var applicationDatabase = scopedServices.GetRequiredService<AppDbContext>();
 
                 var logger = scopedServices.GetRequiredService<ILogger<IntegrationTestWebAppFactory<TStartup>>>();
+
+                // Belum Ketemu Destroy DB Test Sebelumnya dari Memory, DB Context Singleton Pool
+                applicationDatabase.Database.EnsureDeleted();
 
                 applicationDatabase.Database.EnsureCreated();
 

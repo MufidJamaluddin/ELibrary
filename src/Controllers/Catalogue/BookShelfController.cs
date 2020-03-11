@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SmartLibrary.Web.Models.Entity;
 using SmartLibrary.Web.Models.Repository;
+using SmartLibrary.WebAPI.Models.Schema;
 
 namespace SmartLibrary.Web.Controllers.Catalogue
 {
@@ -15,20 +16,26 @@ namespace SmartLibrary.Web.Controllers.Catalogue
         private readonly ILogger<BookShelfController> _logger;
         private readonly BookRepository _repository;
 
-        public BookShelfController(ILogger<BookShelfController> logger)
+        public BookShelfController(ILogger<BookShelfController> logger, AppDbContext dbContext)
         {
             this._logger = logger;
-            this._repository = new BookRepository();
+            this._repository = new BookRepository(dbContext);
         }
 
         [HttpGet]
-        public IEnumerable<Book> Get()
+        public List<Book> GetAllBooks()
         {
-            var books = new List<Book>();
-
-            books.AddRange(this._repository.GetBooks());
+            var books = this._repository.GetBooks();
 
             return books;
+        }
+
+        [HttpGet("{id}")]
+        public Book GetBookById(int id)
+        {
+            var book = this._repository.GetBookById(id);
+
+            return book;
         }
     }
 }

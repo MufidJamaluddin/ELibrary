@@ -8,9 +8,6 @@ namespace SmartLibrary
     {
         public static void Main(string[] args)
         {
-            using var db = new AppDbContext();
-            db.Database.EnsureCreated();
-
             CreateHostBuilder(args).Build().Run();
         }
 

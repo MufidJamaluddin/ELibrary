@@ -24,7 +24,6 @@ namespace SmartLibrary.Web.IntegrationTest
             };
 
             dbContext.Books.AddRange(books);
-
             dbContext.SaveChanges();
         }
     }

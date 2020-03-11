@@ -1,10 +1,12 @@
 using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SmartLibrary.WebAPI.Models.Schema;
 
 namespace SmartLibrary
 {
@@ -19,6 +21,13 @@ namespace SmartLibrary
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddEntityFrameworkSqlite();
+
+            services.AddDbContextPool<AppDbContext>((serviceProvider, optionsBuilder) => {
+                optionsBuilder.UseSqlite(Configuration["ConnectionStrings:DefaultConnection"]);
+                optionsBuilder.UseInternalServiceProvider(serviceProvider);
+            });
+
             services.AddControllers();
         }
 
@@ -55,6 +64,16 @@ namespace SmartLibrary
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => endpoints.MapControllers());
+
+            using var appScope = app.ApplicationServices.CreateScope();
+
+            this.SetupDatabase(appScope);
+        }
+
+        private void SetupDatabase(IServiceScope applicationScope)
+        {
+            using var context = applicationScope.ServiceProvider.GetService<AppDbContext>();
+            context.Database.EnsureCreated();
         }
     }
 }
