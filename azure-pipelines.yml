@@ -39,7 +39,7 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '-r win7-x32 --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    arguments: '-r win-x86 --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: true
 
 - task: PublishBuildArtifacts@1
