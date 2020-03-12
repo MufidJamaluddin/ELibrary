@@ -32,14 +32,14 @@ steps:
   inputs:
     command: 'test'
     projects: 'tests/**/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
 - task: DotNetCoreCLI@2
   displayName: "Publish Application"
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '-r win-x86 --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    arguments: '-r win --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: true
 
 - task: PublishBuildArtifacts@1
