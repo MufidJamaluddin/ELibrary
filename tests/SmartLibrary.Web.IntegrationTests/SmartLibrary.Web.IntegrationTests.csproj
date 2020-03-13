@@ -17,7 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\SmartLibrary.Web.csproj" />
+    <ProjectReference Include="..\..\src\SmartLibrary.Infrastucture\SmartLibrary.Infrastucture.csproj" />
+    <ProjectReference Include="..\..\src\SmartLibrary.Web\SmartLibrary.Web.csproj" />
   </ItemGroup>
 
 </Project>

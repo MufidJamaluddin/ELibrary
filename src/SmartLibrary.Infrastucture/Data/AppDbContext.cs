@@ -1,22 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmartLibrary.Web.Models.Entity;
+using SmartLibrary.Infrastructure.Data.Entity;
 
-namespace SmartLibrary.WebAPI.Models.Schema
+namespace SmartLibrary.Infrastructure.Data
 {
     public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           
+
         }
 
-        public DbSet<Book> Books { get; set; }
-        public DbSet<Author> Authors { get; set; }
+        public DbSet<TB_M_BOOK> Books { get; set; }
+        public DbSet<TB_M_AUTHOR> Authors { get; set; }
 
     }
 }

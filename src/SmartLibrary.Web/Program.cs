@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using SmartLibrary.WebAPI.Models.Schema;
 
 namespace SmartLibrary
 {

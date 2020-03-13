@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SmartLibrary.Web.Models.Entity
+namespace SmartLibrary.Infrastructure.Data.Entity
 {
-    public class Book
+    public class TB_M_BOOK
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,7 +15,7 @@ namespace SmartLibrary.Web.Models.Entity
         [StringLength(100)]
         public string Title { get; set; }
 
-        public ICollection<Author> Authors { get; set; }
+        public ICollection<TB_M_AUTHOR> Authors { get; set; }
 
         [Required]
         [StringLength(100)]

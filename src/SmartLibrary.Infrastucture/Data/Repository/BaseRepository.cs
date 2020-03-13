@@ -1,6 +1,4 @@
-﻿using SmartLibrary.WebAPI.Models.Schema;
-
-namespace SmartLibrary.Web.Models.Repository
+﻿namespace SmartLibrary.Infrastructure.Data.Repository
 {
     public class BaseRepository
     {

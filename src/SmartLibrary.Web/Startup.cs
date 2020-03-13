@@ -1,4 +1,3 @@
-using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SmartLibrary.WebAPI.Models.Schema;
+using SmartLibrary.Infrastructure.Data;
+using System.IO;
 
 namespace SmartLibrary
 {
@@ -23,7 +23,8 @@ namespace SmartLibrary
         {
             services.AddEntityFrameworkSqlite();
 
-            services.AddDbContextPool<AppDbContext>((serviceProvider, optionsBuilder) => {
+            services.AddDbContextPool<AppDbContext>((serviceProvider, optionsBuilder) =>
+            {
                 optionsBuilder.UseSqlite(Configuration["ConnectionStrings:DefaultConnection"]);
                 optionsBuilder.UseInternalServiceProvider(serviceProvider);
             });

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SmartLibrary.Web.Models.Entity;
-using SmartLibrary.Web.Models.Repository;
-using SmartLibrary.WebAPI.Models.Schema;
+using SmartLibrary.Domain.BorrowBook.Entity;
+using SmartLibrary.Infrastructure.Data;
+using SmartLibrary.Infrastructure.Data.Entity;
+using SmartLibrary.Infrastructure.Data.Repository;
+using System.Collections.Generic;
 
 namespace SmartLibrary.Web.Controllers.Catalogue
 {

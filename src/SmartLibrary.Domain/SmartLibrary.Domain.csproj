@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="BorrowBook\Value\" />
+    <Folder Include="BorrowBook\Service\" />
+    <Folder Include="Procurement\Entity\" />
+    <Folder Include="Procurement\Value\" />
+    <Folder Include="Procurement\Repository\" />
+    <Folder Include="Procurement\Service\" />
+  </ItemGroup>
+
+</Project>
