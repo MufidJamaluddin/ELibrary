@@ -21,10 +21,12 @@ namespace SmartLibrary
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddEntityFrameworkSqlServer();
             services.AddEntityFrameworkSqlite();
 
             services.AddDbContextPool<AppDbContext>((serviceProvider, optionsBuilder) =>
             {
+                //optionsBuilder.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
                 optionsBuilder.UseSqlite(Configuration["ConnectionStrings:DefaultConnection"]);
                 optionsBuilder.UseInternalServiceProvider(serviceProvider);
             });

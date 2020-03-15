@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BorrowBook\Value\" />
-    <Folder Include="BorrowBook\Service\" />
+    <Folder Include="BookLending\Value\" />
+    <Folder Include="BookLending\Service\" />
     <Folder Include="Procurement\Entity\" />
     <Folder Include="Procurement\Value\" />
     <Folder Include="Procurement\Repository\" />
