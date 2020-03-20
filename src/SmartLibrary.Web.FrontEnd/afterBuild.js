@@ -5,7 +5,7 @@ var fs = require("fs");
 const build_folder = 'build';
 const dir_path = path.join(__dirname, 'build');
 
-const target_folder = '../SmartLibrary.Web/wwwroot/';
+const target_path = path.join(__dirname, '../SmartLibrary.Web/wwwroot/');
 
 /**
  * Copy File Hasil Build Reactjs
@@ -14,7 +14,7 @@ const target_folder = '../SmartLibrary.Web/wwwroot/';
 function copy_file()
 {
     console.log('Copy File CSS, JS, IMG, dan Media ke ASP.NET static files');
-    ncp(build_folder + "/static", target_folder + "/static", callback);
+    ncp(build_folder + "/static", target_path + "/static", callback);
 
     fs.readdir(dir_path, function(err, files){
         if(err)
@@ -28,8 +28,8 @@ function copy_file()
             {
                 if(file !== 'static')
                 {
-                    console.log('Copy File ' + file + ' ke "'+ target_folder +'"');
-                    ncp(build_folder + '/' + file, target_folder + file, callback);
+                    console.log('Copy File ' + file + ' ke "'+ target_path +'"');
+                    ncp(dir_path + '/' + file, target_path + file, callback);
                 }
             });
         }
