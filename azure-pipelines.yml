@@ -55,11 +55,10 @@ steps:
     arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/test_results/IntegrationTests/ /p:Exclude="[xunit.*]*'
 
 - task: Npm@1
-  displayName: "UI Testing"
   inputs:
     command: 'custom'
     workingDir: 'src\SmartLibrary.Web.FrontEnd'
-    customCommand: 'npm run testci -- --coverageDirectory="$(Build.SourcesDirectory)/test_results/UITests/"'
+    customCommand: 'run testci -- --coverageDirectory="$(Build.SourcesDirectory)/test_results/UITests/"'
 
 - task: reportgenerator@4
   displayName: "Create Coverage Report"
