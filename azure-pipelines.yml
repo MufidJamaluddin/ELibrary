@@ -59,7 +59,7 @@ steps:
   inputs:
     command: 'custom'
     workingDir: 'src\SmartLibrary.Web.FrontEnd'
-    customCommand: 'npm run test:ci -- --coverageDirectory=$(Build.SourcesDirectory)/test_results/UITests/'
+    customCommand: 'npm run test:ci'
 
 - task: reportgenerator@4
   displayName: "Create Coverage Report"
