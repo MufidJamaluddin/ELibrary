@@ -4,20 +4,17 @@
   "author": "Mufid Jamaluddin <mufidjamaluddin@outlook.com>",
   "private": true,
   "dependencies": {
-    "@types/jest": "^24.9.1",
-    "@types/node": "^12.12.30",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0",
-    "typescript": "^3.7.5"
+    "react-scripts": "3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && node afterBuild.js",
     "test": "react-scripts test",
-    "test:ci": "react-scripts test --ci --coverage=true --runInBand --coverageReporters=cobertura",
+    "test:ci": "jest --coverage --runInBand --ci ",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -36,12 +33,19 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.12.30",
+    "@types/testing-library__jest-dom": "^5.0.2",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.9.1",
     "jest-junit": "^10.0.0",
     "ncp": "^2.0.0",
     "nyc": "^15.0.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1"
+    "ts-jest": "^25.2.1",
+    "typescript": "^3.8.3"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -49,8 +53,18 @@
       "!**/node_modules/**",
       "!**/coverage/**",
       "!**/serviceWorker.js",
-      "!**/index.js"
-    ]
+      "!**/index.js",
+      "!*Transformer.js"
+    ],
+    "mapCoverage": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 40,
+        "functions": 40,
+        "lines": 40,
+        "statements": -10
+      }
+    }
   },
   "nyc": {
     "check-coverage": true,
@@ -58,6 +72,6 @@
     "reporter": [
       "cobertura"
     ],
-    "report-dir": "../test_results/Coverage"
+    "report-dir": "../../test_results/UITests/"
   }
 }
