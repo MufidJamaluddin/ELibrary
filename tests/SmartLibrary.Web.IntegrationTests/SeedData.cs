@@ -23,7 +23,7 @@ namespace SmartLibrary.Web.IntegrationTest
                 new TB_M_BOOK { Title = "Clean Code: A Handbook of Agile Software Craftmanship", Publisher = "Prentice Hall", Authors = new List<TB_M_AUTHOR>{ new TB_M_AUTHOR { Name="Robert C. Martin" } }, PublishedDate = DateTime.Now },
             };
 
-            dbContext.Books.AddRange(books);
+            dbContext.TB_M_BOOK.AddRange(books);
             dbContext.SaveChanges();
         }
     }

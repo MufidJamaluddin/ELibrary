@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SmartLibrary.Infrastructure.Data;
+using SmartLibrary.TechnicalServices;
 using System.IO;
 
 namespace SmartLibrary
@@ -21,15 +21,11 @@ namespace SmartLibrary
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddEntityFrameworkSqlServer();
-            services.AddEntityFrameworkSqlite();
-
-            services.AddDbContextPool<AppDbContext>((serviceProvider, optionsBuilder) =>
-            {
-                //optionsBuilder.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
-                optionsBuilder.UseSqlite(Configuration["ConnectionStrings:DefaultConnection"]);
-                optionsBuilder.UseInternalServiceProvider(serviceProvider);
-            });
+            EFDatabaseSetup.ConfigureEFDatabase<AppDbContext>(
+                services,
+                Configuration["DatabaseDriver"],
+                Configuration["ConnectionStrings:DefaultConnection"]
+            );
 
             services.AddControllers();
         }

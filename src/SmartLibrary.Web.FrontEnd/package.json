@@ -1,12 +1,9 @@
 {
-  "name": "smartlibrary",
+  "name": "smartlibrarywebfrontend",
   "version": "0.1.0",
   "author": "Mufid Jamaluddin <mufidjamaluddin@outlook.com>",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^24.9.1",
     "@types/node": "^12.12.30",
     "@types/react": "^16.9.23",
@@ -18,8 +15,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && node afterBuild.js",
     "test": "react-scripts test",
+    "test:ci": "react-scripts test --ci --coverage=true --runInBand --coverageReporters=cobertura",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -38,6 +36,28 @@
     ]
   },
   "devDependencies": {
-    "ncp": "^2.0.0"
+    "jest-junit": "^10.0.0",
+    "ncp": "^2.0.0",
+    "nyc": "^15.0.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{jsx,tsx,ts}",
+      "!**/node_modules/**",
+      "!**/coverage/**",
+      "!**/serviceWorker.js",
+      "!**/index.js"
+    ]
+  },
+  "nyc": {
+    "check-coverage": true,
+    "per-file": true,
+    "reporter": [
+      "cobertura"
+    ],
+    "report-dir": "../test_results/Coverage"
   }
 }

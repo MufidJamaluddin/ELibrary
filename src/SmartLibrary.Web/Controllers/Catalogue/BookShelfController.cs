@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using SmartLibrary.Domain.BorrowBook.Entity;
 using SmartLibrary.Infrastructure.Data;
-using SmartLibrary.Infrastructure.Data.Entity;
 using SmartLibrary.Infrastructure.Data.Repository;
 using System.Collections.Generic;
 

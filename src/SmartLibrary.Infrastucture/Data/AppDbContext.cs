@@ -15,8 +15,8 @@ namespace SmartLibrary.Infrastructure.Data
 
         }
 
-        public DbSet<TB_M_BOOK> Books { get; set; }
-        public DbSet<TB_M_AUTHOR> Authors { get; set; }
+        public DbSet<TB_M_BOOK> TB_M_BOOK { get; set; }
+        public DbSet<TB_M_AUTHOR> TB_M_AUTHOR { get; set; }
 
     }
 }

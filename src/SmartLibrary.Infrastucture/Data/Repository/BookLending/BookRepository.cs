@@ -14,7 +14,7 @@ namespace SmartLibrary.Infrastructure.Data.Repository
 
         public Book GetBookById(int id)
         {
-            return this.DbContext.Books
+            return this.DbContext.TB_M_BOOK
                 .Where(x => x.Id == id)
                 .Select(x => new Book
                 {
@@ -26,7 +26,7 @@ namespace SmartLibrary.Infrastructure.Data.Repository
 
         public List<Book> GetBooks()
         {
-            return this.DbContext.Books
+            return this.DbContext.TB_M_BOOK
                 .Select(x => new Book
                 {
                     Title = x.Title,
@@ -37,7 +37,7 @@ namespace SmartLibrary.Infrastructure.Data.Repository
 
         public List<Book> SearchBook(Book book)
         {
-            return this.DbContext.Books
+            return this.DbContext.TB_M_BOOK
                 .Where(x =>
                     x.Title == book.Title &&
                     x.Publisher == book.Publisher
