@@ -1,7 +1,5 @@
-# ASP.NET Core (.NET Framework)
-# Build and test ASP.NET Core projects targeting the full .NET Framework.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+# ASP.NET Core (.NET Framework) & ReactJS (npm)
+# Smart Library
 
 trigger:
 - master
@@ -22,17 +20,45 @@ steps:
     restoreSolution: '$(solution)'
 
 - task: DotNetCoreCLI@2
-  displayName: "Build Application"
+  displayName: "Build Backend Application"
   inputs:
     command: 'build'
     arguments: '--configuration $(buildConfiguration)'
 
+- task: Npm@1
+  displayName: "Build Frontend Application"
+  inputs:
+    command: 'install'
+    workingDir: 'src\SmartLibrary.Web.FrontEnd\'
+
 - task: DotNetCoreCLI@2
-  displayName: "Testing Application"
+  displayName: "Unit Testing"
   inputs:
     command: 'test'
-    projects: 'tests/**/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+    projects: 'src/SmartLibrary.UnitTests'
+    arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/test_results/UnitTests/ /p:Exclude="[xunit.*]*'
+    testRunTitle: 'Unit Testing'
+
+- task: DotNetCoreCLI@2
+  displayName: "Integration Testing"
+  inputs:
+    command: 'test'
+    projects: 'src/SmartLibrary.Web.IntegrationTests'
+    arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/test_results/IntegrationTests/ /p:Exclude="[xunit.*]*'
+
+- task: Npm@1
+  displayName: "UI Testing"
+  inputs:
+    command: 'custom'
+    workingDir: 'src\SmartLibrary.Web.FrontEnd\'
+    customCommand: 'run test:ci'
+
+- task: reportgenerator@4
+  displayName: "Create Coverage Report"
+  inputs:
+    reports: 'coverage.xml'
+    targetdir: 'coveragereport'
+    sourcedirs: '$(Build.SourcesDirectory)/test_results/*Tests/*.xml'
 
 - task: DotNetCoreCLI@2
   displayName: "Publish Application"
@@ -43,6 +69,7 @@ steps:
     zipAfterPublish: true
 
 - task: PublishBuildArtifacts@1
+  displayName: "Publish Build Artifact"
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'SmartLibraryApp'
