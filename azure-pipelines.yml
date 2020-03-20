@@ -16,8 +16,15 @@ steps:
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
+  displayName: "Restore NuGet"
   inputs:
     restoreSolution: '$(solution)'
+
+- task: Npm@1
+  displayName: "Restore NPM Package"
+  inputs:
+    command: 'install'
+    workingDir: 'src\SmartLibrary.Web.FrontEnd'
 
 - task: DotNetCoreCLI@2
   displayName: "Build Backend Application"
@@ -28,8 +35,9 @@ steps:
 - task: Npm@1
   displayName: "Build Frontend Application"
   inputs:
-    command: 'install'
-    workingDir: 'src\SmartLibrary.Web.FrontEnd\'
+    command: 'custom'
+    workingDir: 'src\SmartLibrary.Web.FrontEnd'
+    customCommand: 'run build'
 
 - task: DotNetCoreCLI@2
   displayName: "Unit Testing"
@@ -50,15 +58,15 @@ steps:
   displayName: "UI Testing"
   inputs:
     command: 'custom'
-    workingDir: 'src\SmartLibrary.Web.FrontEnd\'
+    workingDir: 'src\SmartLibrary.Web.FrontEnd'
     customCommand: 'run test:ci'
 
 - task: reportgenerator@4
   displayName: "Create Coverage Report"
   inputs:
     reports: 'coverage.xml'
-    targetdir: 'coveragereport'
-    sourcedirs: '$(Build.SourcesDirectory)/test_results/*Tests/*.xml'
+    targetdir: '$(Build.SourcesDirectory)/coveragereport'
+    sourcedirs: '$(Build.SourcesDirectory)/test_results/IntegrationTests/;$(Build.SourcesDirectory)/test_results/UnitTests/;$(Build.SourcesDirectory)/test_results/UITests/'
 
 - task: DotNetCoreCLI@2
   displayName: "Publish Application"
