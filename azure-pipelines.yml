@@ -56,6 +56,7 @@ steps:
     arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/test_results/IntegrationTests/ /p:Exclude="[xunit.*]*'
 
 - task: Npm@1
+  displayName: "UI Testing"
   inputs:
     command: 'custom'
     workingDir: 'src\SmartLibrary.Web.FrontEnd'
@@ -63,13 +64,15 @@ steps:
 
 - task: reportgenerator@4
   displayName: "Create Coverage Report"
+  continueOnError: true
   inputs:
-    reports: '$(Build.SourcesDirectory)/test_results/IntegrationTests/;$(Build.SourcesDirectory)/test_results/UnitTests/;$(Build.SourcesDirectory)/test_results/UITests/'
+    reports: '$(Build.SourcesDirectory)/test_results/IntegrationTests/*.xml;$(Build.SourcesDirectory)/test_results/UnitTests/*.xml;$(Build.SourcesDirectory)/test_results/UITests/*.xml'
     targetdir: '$(build.artifactstagingdirectory)/test_results/'
     reporttypes: 'HtmlInline_AzurePipelines;Cobertura;Badges'
 
 - task: PublishCodeCoverageResults@1
   displayName: 'Publish Code Coverage Results'
+  continueOnError: true
   inputs:
     codeCoverageTool: cobertura
     summaryFileLocation: '$(build.artifactstagingdirectory)/test_results/cobertura.xml'
