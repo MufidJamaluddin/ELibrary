@@ -12,6 +12,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   disable.coverage.autogenerate: 'true'
+  
 
 steps:
 - task: NuGetToolInstaller@1
@@ -22,7 +23,7 @@ steps:
     restoreSolution: '$(solution)'
 
 - task: Npm@1
-  displayName: "Restore NPM Package"
+  displayName: "Restore Frontend Package"
   inputs:
     command: 'install'
     workingDir: 'src\SmartLibrary.Web.FrontEnd'
@@ -66,17 +67,17 @@ steps:
   displayName: "Create Coverage Report"
   continueOnError: true
   inputs:
-    reports: '$(Build.SourcesDirectory)/test_results/IntegrationTests/*.xml;$(Build.SourcesDirectory)/test_results/UnitTests/*.xml;$(Build.SourcesDirectory)/test_results/UITests/*.xml'
-    targetdir: '$(build.artifactstagingdirectory)/test_results/'
-    reporttypes: 'HtmlInline_AzurePipelines;Cobertura;Badges'
+    reports: '$(Build.SourcesDirectory)/test_results/IntegrationTests/coverage.cobertura.xml;$(Build.SourcesDirectory)/test_results/UnitTests/coverage.cobertura.xml;$(Build.SourcesDirectory)/test_results/UITests/cobertura-coverage.xml'
+    targetdir: '$(Build.ArtifactStagingDirectory)/test_results/'
+    reporttypes: 'HtmlInline_AzurePipelines;Cobertura'
 
 - task: PublishCodeCoverageResults@1
   displayName: 'Publish Code Coverage Results'
   continueOnError: true
   inputs:
     codeCoverageTool: cobertura
-    summaryFileLocation: '$(build.artifactstagingdirectory)/test_results/cobertura.xml'
-    reportDirectory: '$(build.artifactstagingdirectory)/test_results/'
+    summaryFileLocation: '$(Build.ArtifactStagingDirectory)/test_results/cobertura.xml'
+    reportDirectory: '$(Build.ArtifactStagingDirectory)/test_results/'
 
 - task: DotNetCoreCLI@2
   displayName: "Publish Application"
