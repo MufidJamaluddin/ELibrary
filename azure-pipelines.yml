@@ -11,6 +11,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  disable.coverage.autogenerate: 'true'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -63,9 +64,16 @@ steps:
 - task: reportgenerator@4
   displayName: "Create Coverage Report"
   inputs:
-    reports: 'coverage.xml'
-    targetdir: '$(Build.SourcesDirectory)/coveragereport'
-    sourcedirs: '$(Build.SourcesDirectory)/test_results/IntegrationTests/;$(Build.SourcesDirectory)/test_results/UnitTests/;$(Build.SourcesDirectory)/test_results/UITests/'
+    reports: '$(Build.SourcesDirectory)/test_results/IntegrationTests/;$(Build.SourcesDirectory)/test_results/UnitTests/;$(Build.SourcesDirectory)/test_results/UITests/'
+    targetdir: '$(build.artifactstagingdirectory)/test_results/'
+    reporttypes: 'HtmlInline_AzurePipelines;Cobertura;Badges'
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish Code Coverage Results'
+  inputs:
+    codeCoverageTool: cobertura
+    summaryFileLocation: '$(build.artifactstagingdirectory)/test_results/cobertura.xml'
+    reportDirectory: '$(build.artifactstagingdirectory)/test_results/'
 
 - task: DotNetCoreCLI@2
   displayName: "Publish Application"
