@@ -67,7 +67,7 @@ steps:
   displayName: "Create Coverage Report"
   continueOnError: true
   inputs:
-    reports: '$(Build.SourcesDirectory)/test_results/IntegrationTests/coverage.cobertura.xml;$(Build.SourcesDirectory)/test_results/UnitTests/coverage.cobertura.xml;$(Build.SourcesDirectory)/test_results/UITests/cobertura-coverage.xml'
+    reports: '$(Build.SourcesDirectory)/test_results/*Tests/*.xml'
     targetdir: '$(Build.ArtifactStagingDirectory)/test_results/'
     reporttypes: 'HtmlInline_AzurePipelines;Cobertura'
 
