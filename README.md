@@ -22,14 +22,13 @@ Aplikasi SmartLibrary dibangun menggunakan teknologi ASP.NET Core, Entity Framew
 
 1. IDE Visual Studio 2019 dengan ASP.NET Core 3.0
 2. Database Engine telah terinstal:
-   2a. MySQL
+   1. MySQL
        - MySQL versi 8.0
        - MySQL versi 5.7
        - MariaDB versi 10.4
        - MariaDB versi 10.3
-   2b. SQLServer
-       - Microsoft SQL Server diatas versi 2012
-         hingga 2019 (yang mendukung Entity Framework Core 3.1.2)
+   2. SQLServer
+       - Microsoft SQL Server diatas versi 2012 hingga 2019 (yang mendukung Entity Framework Core 3.1.2)
 
 ### Setting Konfigurasi
 
