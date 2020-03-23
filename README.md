@@ -42,13 +42,13 @@ Aplikasi SmartLibrary dibangun menggunakan teknologi ASP.NET Core, Entity Framew
 
 1. Buka SmartLibrary.sln nya di Visual Studio
 2. Jalankan DB Engine anda dan pastikan konfigurasi appsettings.json telah sesuai.
-3. Jalankan aplikasi anda
+3. Jalankan aplikasi anda melalui Visual Studio
 
 ### Instalasi di MacOS (belum diuji)
 
 1. Buka SmartLibrary.sln nya di Visual Studio
 2. Jalankan DB Engine anda dan pastikan konfigurasi appsettings.json telah sesuai.
-3. Jalankan aplikasi anda
+3. Jalankan aplikasi anda melalui Visual Studio
 
 ### Deployment
 
@@ -105,9 +105,7 @@ Anda tidak boleh membuat query yang depends ke database engine tertentu. Semua a
 
 Jangan lupa untuk menambahkan skenario testing (Unit Testing, Integration Testing, dsb) sebelum melakukan pull request ke repositori utama ini.
 
-Anda juga dapat menambah database engine...
-
-## Menambah Database Engine
+## Menambah Support Database Engine
 
 Anda dapat menambahkan database engine yang belum ada didukung oleh aplikasi ini dengan cara:
 
