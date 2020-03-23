@@ -54,7 +54,7 @@ Aplikasi SmartLibrary dibangun menggunakan teknologi ASP.NET Core, Entity Framew
 
 Proses development belum dapat dilakukan di Linux, namun kita dapat porting aplikasi supaya jalan di Linux dengan menggunakan command ```dotnet build --runtime ubuntu.16.04-x64```
 
-Aplikasi dapat berjalan di Windows, Mac, dan Linux sesuai dengan ![versi OS yang didukung oleh ASP.NET Core 3.0](https://github.com/dotnet/core/blob/master/release-notes/3.0/3.0-supported-os.md)
+Aplikasi dapat berjalan di Windows, Mac, dan Linux sesuai dengan [versi OS yang didukung oleh ASP.NET Core 3.0](https://github.com/dotnet/core/blob/master/release-notes/3.0/3.0-supported-os.md)
 
 
 ## Fitur Aplikasi (sedang dibangun)
