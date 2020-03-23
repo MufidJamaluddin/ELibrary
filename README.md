@@ -5,7 +5,58 @@
 
 Aplikasi SmartLibrary merupakan aplikasi yang membantu pengunjung perpustakaan dalam pencarian koleksi buku dan peminjaman buku dengan biaya yang ditentukan oleh formula yang telah ditentukan serta membantu pustakawan dalam mengelola koleksi buku.
 
-Aplikasi SmartLibrary dibangun menggunakan teknologi ASP.NET Core, Entity Framework Core, dan ReactJS. ASP.NET Core dipilih karena aplikasi dapat berjalan multiplatform. Entity Framework Core dipilih dengan pendekatan Code-First Database sehingga bersifat agnostik terhadap database engine yang digunakan. ReactJS dipilih untuk meningkatkan user experience dengan SPA dan learning rate untuk developer yang tinggi. Anda dapat menjalankan aplikasi ini pada OS Windows, OS Linux, maupun MacOS serta anda dapat bebas menggunakan SQL database engine yang mendukung entity framework (MySQL, PostgreSQL, SQLServer, Oracle, dll).
+Aplikasi SmartLibrary dibangun menggunakan teknologi ASP.NET Core, Entity Framework Core, dan ReactJS. ASP.NET Core dipilih karena aplikasi dapat berjalan multiplatform. Entity Framework Core dipilih dengan pendekatan Code-First Database sehingga bersifat agnostik terhadap database engine yang digunakan. ReactJS dipilih untuk meningkatkan user experience dengan SPA dan learning rate untuk developer yang tinggi.
+
+## Dependency dan Cara Instalasi
+
+### Dependency Aplikasi (Saat ini)
+
+1. ASP.NET Core versi 3.0
+2. Entity Framework Core versi 3.1.2
+3. Pomelo.EntityFrameworkCore.Mysql versi 3.1.1
+4. Microsoft.EntityFrameworkCore.SqlServer versi 3.1.2 
+5. NodeJS versi 12.16.1 (DEV)
+6. NPM versi 6.13.4 (DEV)
+
+### Requirement
+
+1. IDE Visual Studio 2019 dengan ASP.NET Core 3.0
+2. Database Engine telah terinstal:
+   2a. MySQL
+       - MySQL versi 8.0
+       - MySQL versi 5.7
+       - MariaDB versi 10.4
+       - MariaDB versi 10.3
+   2b. SQLServer
+       - Microsoft SQL Server diatas versi 2012
+         hingga 2019 (yang mendukung Entity Framework Core 3.1.2)
+
+### Setting Konfigurasi
+
+1. Buka src/SmartLibrary.Web/appsettings.json
+2. Ubah field DatabaseDriver dengan "MySQL" atau "SQLServer"
+3. Ubah field ConnectionStrings -> DefaultConnection berdasarkan konfigurasi database engine anda.
+   Anda boleh ubah selain konfigurasi TreatTinyAsBoolean.
+   "Server=<Server DB Engine anda>;Database=<Database yang akan anda gunakan untuk aplikasi ini>;User=<User DB Engine anda>;Password=<Password DB Engine anda>;TreatTinyAsBoolean=true;"
+
+### Instalasi di Windows
+
+1. Buka SmartLibrary.sln nya di Visual Studio
+2. Jalankan DB Engine anda dan pastikan konfigurasi appsettings.json telah sesuai.
+3. Jalankan aplikasi anda
+
+### Instalasi di MacOS (belum diuji)
+
+1. Buka SmartLibrary.sln nya di Visual Studio
+2. Jalankan DB Engine anda dan pastikan konfigurasi appsettings.json telah sesuai.
+3. Jalankan aplikasi anda
+
+### Deployment
+
+Proses development belum dapat dilakukan di Linux, namun kita dapat porting aplikasi supaya jalan di Linux dengan menggunakan command ```dotnet build --runtime ubuntu.16.04-x64```
+
+Aplikasi dapat berjalan di Windows, Mac, dan Linux sesuai dengan ![versi OS yang didukung oleh ASP.NET Core 3.0](https://github.com/dotnet/core/blob/master/release-notes/3.0/3.0-supported-os.md)
+
 
 ## Fitur Aplikasi (sedang dibangun)
 
@@ -45,8 +96,26 @@ Pengadaan buku dari pihak ketiga untuk memenuhi koleksi buku perpustakaan
 
 # Kontribusi
 
+## Kontribusi Pengembangan Aplikasi
+
 Anda dapat kontribusi terhadap aplikasi ini dengan melakukan Fork repositori ini dan melakukan pengembangan aplikasi.
 
 Anda dapat membantu mengerjakan fitur yang belum selesai, improve UI/UX, maupun menambahkan fitur baru yang dapat digunakan secara umum (tidak terikat dengan proses bisnis eksklusif salahsatu perpustakaan).
 
+Anda tidak boleh membuat query yang depends ke database engine tertentu. Semua akses database engine harus melalui LINQ Entity Framework dengan cara Code-First.
+
 Jangan lupa untuk menambahkan skenario testing (Unit Testing, Integration Testing, dsb) sebelum melakukan pull request ke repositori utama ini.
+
+Anda juga dapat menambah database engine...
+
+## Menambah Database Engine
+
+Anda dapat menambahkan database engine yang belum ada didukung oleh aplikasi ini dengan cara:
+
+1. Install library ekstensi Entity Framework Core yang akan berperan sebagai penghubung antara DB Engine anda dengan Entity Framework Core versi 3.1.2
+2. Buka project SmartLibrary.TechnicalServices
+3. Buka folder database
+4. Buat kelas yang inherit ke BaseDatabaseService dan tambahkan ke kelas DatabaseServiceFactory
+5. Untuk menjalankannya, ubah SmartLibrary.Web file appsettings.json
+6. Jalankan program. Cek DB Engine anda, pastikan kelas-kelas EF Core berubah menjadi tabel-tabel di DB Engine anda :)
+6. Ubah Readme.md dan tambahkan DB Engine, pull request ke git ini
